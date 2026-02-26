@@ -12,7 +12,7 @@ Express.js backend for PotatoPress news application with automatic API key rotat
 2. **Create `.env` file:**
    ```env
    PORT=5000
-   FRONTEND_URL=http://localhost:3000
+   FRONTEND_URL=http://localhost:3000  # include protocol (http:// or https://)
    NEWS_API_KEY_1=your_api_key
    NEWS_API_KEY_2=your_api_key
    NEWS_API_KEY_3=your_api_key

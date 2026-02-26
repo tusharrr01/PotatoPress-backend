@@ -4,7 +4,13 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+let FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+// ensure URL includes protocol
+if (FRONTEND_URL && !/^https?:\/\//i.test(FRONTEND_URL)) {
+  console.warn(`FRONTEND_URL missing protocol, prepending https://: ${FRONTEND_URL}`);
+  FRONTEND_URL = `https://${FRONTEND_URL}`;
+}
 
 // Middleware
 app.use(cors({
