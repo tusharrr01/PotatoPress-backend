@@ -13,7 +13,15 @@ class APIKeyManager {
     this.currentKeyIndex = 0;
     this.failedKeys = new Set(); // Track failed keys
 
-    console.log(`Loaded ${this.apiKeys.length} API keys`);
+    // log count and masked keys for diagnostics
+    const masked = this.apiKeys.map(k => (k ? k.slice(0,4)+"..."+k.slice(-4) : '<empty>'));
+    console.log(`Loaded ${this.apiKeys.length} API keys:`, masked);
+
+    if (this.apiKeys.length === 0) {
+      console.error('No NEWS_API_KEY_* environment variables found! Backend will not function.');
+      // optionally exit so deployment fails fast
+      // process.exit(1);
+    }
   }
 
   /**
